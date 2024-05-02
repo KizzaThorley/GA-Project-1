@@ -14,7 +14,12 @@ let currentWordleArray = ['', '', '', '', '']
 
 let playersGuess = ''
 let playersGuessArray = []
-
+let playersGuessCharacters1 = []
+let playersGuessCharacters2 = []
+let playersGuessCharacters3 = []
+let playersGuessCharacters4 = []
+let playersGuessCharacters5 = []
+let playersGuessCharacters6 = []
 
 let pastPlayerGuesses = ['', '', '', '', '', '']
 
@@ -52,11 +57,45 @@ if (currentWordle === guessInput.value) {
 }
 }
 
-function storeGuess() {
-    playersGuess = 
-    console.log(playersGuess);
+const storeGuess = (event) => {
+    playersGuess = guessInput.value
+    if (playersGuessArray.length < 6 && playersGuess.length === 5) {
+    playersGuessArray.push(`${playersGuess}`) 
+} else {
+    return
+}
+    // console.log(playersGuessArray);
+    // console.log(playersGuess.length);
 }
 
+function playersGuessIntoChar() { 
+    if (playersGuessArray.length === 1)  {
+        playersGuessCharacters1 = playersGuessArray[playersGuessArray.length - 1].split('') 
+        
+        } else if (playersGuessArray.length === 2) {
+            playersGuessCharacters2 = playersGuessArray[playersGuessArray.length - 1].split('') 
+       
+        } else if (playersGuessArray.length === 3) {
+            playersGuessCharacters3 = playersGuessArray[playersGuessArray.length - 1].split('') 
+       
+        } else if (playersGuessArray.length === 4) {
+            playersGuessCharacters4 = playersGuessArray[playersGuessArray.length - 1].split('') 
+       
+        } else if (playersGuessArray.length === 5) {
+            playersGuessCharacters5 = playersGuessArray[playersGuessArray.length - 1].split('') 
+       
+        } else if (playersGuessArray.length === 6) {
+            playersGuessCharacters6 = playersGuessArray[playersGuessArray.length - 1].split('') 
+            console.log(playersGuessCharacters1);
+        }
+    }
+
+
+
+function playGame() {
+storeGuess()
+playersGuessIntoChar()
+}
 function sayhello() {
     console.log(playersGuess);
 }
@@ -66,14 +105,5 @@ function sayhello() {
 restartBtn.addEventListener('click', sayhello)
 
 
-checkGuessBtn.addEventListener('click', (event) => {
-    playersGuess = guessInput.value
-    if (playersGuessArray.length < 6 && playersGuess.length === 5) {
-    playersGuessArray.push(`${playersGuess}`) 
-} else {
-    return
-}
-    console.log(playersGuessArray);
-    console.log(playersGuess.length);
-})
+checkGuessBtn.addEventListener('click', playGame)
 // console.log(playersGuess);
