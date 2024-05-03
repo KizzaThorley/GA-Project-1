@@ -37,108 +37,129 @@ const restartBtn = document.querySelector('#restart')
 const onScreenKeyboard = document.querySelectorAll('.key-sqr')
 
 const resultsDisplay = document.querySelector('#results')
+
+
+
 /*-------------------------------- Functions --------------------------------*/
-function randomNum() {
-    const randomIdx = Math.floor(Math.random() * wordList.randomWord.length)
-    return randomIdx
-}
-
 function randomWord() {
-    currentWordle = wordList.randomWord[randomNum()];
-    currentWordleArray = currentWordle.split('') 
+    const randomIdx = Math.floor(Math.random() * wordList.randomWord.length)
+    return currentWordle = wordList.randomWord[randomIdx];
 }
 
-function checkWinner(event) {
-if (currentWordle === guessInput.value) {
-    winner = true
-} else if (playersGuessArray.includes('')) {
-    winner = false
-} else {
-    lost = true
-}
-}
 
 const storeGuess = (event) => {
     playersGuess = guessInput.value
-    if (playersGuessArray.length < 6 && playersGuess.length === 5) {
-    playersGuessArray.push(`${playersGuess}`) 
-} else {
-    return
-}
+    if (wordList.randomWord.includes(playersGuess) === false ) {
+return
+//  resultsDisplay.innerText = `Sorry that is not in the word list`
+// line isnt working yet 
+    }
+    else if (playersGuessArray.length <= 5 && playersGuess.length === 5) {
+        playersGuessArray.push(`${playersGuess}`)
+    } else if (playersGuessArray.length === 6) {
+        return
+    }
     // console.log(playersGuessArray);
     // console.log(playersGuess.length);
 }
 
-function playersGuessIntoChar() { 
-    if (playersGuessArray.length === 1) 
-    {
-        playersGuessCharactersFirst = playersGuessArray[playersGuessArray.length - 1].split('') 
-        guessCharactureDivs[0].innerText = playersGuessCharactersFirst[0]
-        guessCharactureDivs[1].innerText = playersGuessCharactersFirst[1]
-        guessCharactureDivs[2].innerText = playersGuessCharactersFirst[2]
-        guessCharactureDivs[3].innerText = playersGuessCharactersFirst[3]
-        guessCharactureDivs[4].innerText = playersGuessCharactersFirst[4]
-        } else if (playersGuessArray.length === 2) 
-        {
-            playersGuessCharactersSecond = playersGuessArray[playersGuessArray.length - 1].split('') 
-            guessCharactureDivs[5].innerText = playersGuessCharactersSecond[0]
-            guessCharactureDivs[6].innerText = playersGuessCharactersSecond[1]
-            guessCharactureDivs[7].innerText = playersGuessCharactersSecond[2]
-            guessCharactureDivs[8].innerText = playersGuessCharactersSecond[3]
-            guessCharactureDivs[9].innerText = playersGuessCharactersSecond[4]
-          
-        } else if (playersGuessArray.length === 3) 
-        {
-            playersGuessCharactersThird = playersGuessArray[playersGuessArray.length - 1].split('') 
-            guessCharactureDivs[10].innerText = playersGuessCharactersThird[0]
-            guessCharactureDivs[11].innerText = playersGuessCharactersThird[1]
-            guessCharactureDivs[12].innerText = playersGuessCharactersThird[2]
-            guessCharactureDivs[13].innerText = playersGuessCharactersThird[3]
-            guessCharactureDivs[14].innerText = playersGuessCharactersThird[4]
-          
-        } else if (playersGuessArray.length === 4) 
-        {
-            playersGuessCharactersFourth = playersGuessArray[playersGuessArray.length - 1].split('')
-            guessCharactureDivs[15].innerText = playersGuessCharactersFourth[0]
-            guessCharactureDivs[16].innerText = playersGuessCharactersFourth[1]
-            guessCharactureDivs[17].innerText = playersGuessCharactersFourth[2]
-            guessCharactureDivs[18].innerText = playersGuessCharactersFourth[3]
-            guessCharactureDivs[19].innerText = playersGuessCharactersFourth[4] 
-           
-        } else if (playersGuessArray.length === 5) 
-        {
-            playersGuessCharactersFifth = playersGuessArray[playersGuessArray.length - 1].split('') 
-            guessCharactureDivs[20].innerText = playersGuessCharactersFifth[0]
-            guessCharactureDivs[21].innerText = playersGuessCharactersFifth[1]
-            guessCharactureDivs[22].innerText = playersGuessCharactersFifth[2]
-            guessCharactureDivs[23].innerText = playersGuessCharactersFifth[3]
-            guessCharactureDivs[24].innerText = playersGuessCharactersFifth[4]
-           
-        } else if (playersGuessArray.length === 6) 
-        {
-            playersGuessCharactersSixth = playersGuessArray[playersGuessArray.length - 1].split('') 
-            guessCharactureDivs[25].innerText = playersGuessCharactersSixth[0]
-            guessCharactureDivs[26].innerText = playersGuessCharactersSixth[1]
-            guessCharactureDivs[27].innerText = playersGuessCharactersSixth[2]
-            guessCharactureDivs[28].innerText = playersGuessCharactersSixth[3]
-            guessCharactureDivs[29].innerText = playersGuessCharactersSixth[4]
-            
-        }
-    }
+function playersGuessIntoChar() {
+    if (playersGuessArray.length === 1) {
+        playersGuessCharactersFirst = playersGuessArray[playersGuessArray.length - 1].split('')
+        guessCharactureDivs[0].innerText = playersGuessCharactersFirst[0].toUpperCase()
+        guessCharactureDivs[1].innerText = playersGuessCharactersFirst[1].toUpperCase()
+        guessCharactureDivs[2].innerText = playersGuessCharactersFirst[2].toUpperCase()
+        guessCharactureDivs[3].innerText = playersGuessCharactersFirst[3].toUpperCase()
+        guessCharactureDivs[4].innerText = playersGuessCharactersFirst[4].toUpperCase()
+    } else if (playersGuessArray.length === 2) {
+        playersGuessCharactersSecond = playersGuessArray[playersGuessArray.length - 1].split('')
+        guessCharactureDivs[5].innerText = playersGuessCharactersSecond[0].toUpperCase()
+        guessCharactureDivs[6].innerText = playersGuessCharactersSecond[1].toUpperCase()
+        guessCharactureDivs[7].innerText = playersGuessCharactersSecond[2].toUpperCase()
+        guessCharactureDivs[8].innerText = playersGuessCharactersSecond[3].toUpperCase()
+        guessCharactureDivs[9].innerText = playersGuessCharactersSecond[4].toUpperCase()
 
-  
-    
+    } else if (playersGuessArray.length === 3) {
+        playersGuessCharactersThird = playersGuessArray[playersGuessArray.length - 1].split('')
+        guessCharactureDivs[10].innerText = playersGuessCharactersThird[0].toUpperCase()
+        guessCharactureDivs[11].innerText = playersGuessCharactersThird[1].toUpperCase()
+        guessCharactureDivs[12].innerText = playersGuessCharactersThird[2].toUpperCase()
+        guessCharactureDivs[13].innerText = playersGuessCharactersThird[3].toUpperCase()
+        guessCharactureDivs[14].innerText = playersGuessCharactersThird[4].toUpperCase()
+
+    } else if (playersGuessArray.length === 4) {
+        playersGuessCharactersFourth = playersGuessArray[playersGuessArray.length - 1].split('')
+        guessCharactureDivs[15].innerText = playersGuessCharactersFourth[0].toUpperCase()
+        guessCharactureDivs[16].innerText = playersGuessCharactersFourth[1].toUpperCase()
+        guessCharactureDivs[17].innerText = playersGuessCharactersFourth[2].toUpperCase()
+        guessCharactureDivs[18].innerText = playersGuessCharactersFourth[3].toUpperCase()
+        guessCharactureDivs[19].innerText = playersGuessCharactersFourth[4].toUpperCase()
+
+    } else if (playersGuessArray.length === 5) {
+        playersGuessCharactersFifth = playersGuessArray[playersGuessArray.length - 1].split('')
+        guessCharactureDivs[20].innerText = playersGuessCharactersFifth[0].toUpperCase()
+        guessCharactureDivs[21].innerText = playersGuessCharactersFifth[1].toUpperCase()
+        guessCharactureDivs[22].innerText = playersGuessCharactersFifth[2].toUpperCase()
+        guessCharactureDivs[23].innerText = playersGuessCharactersFifth[3].toUpperCase()
+        guessCharactureDivs[24].innerText = playersGuessCharactersFifth[4].toUpperCase()
+
+    } else if (playersGuessArray.length === 6) {
+        playersGuessCharactersSixth = playersGuessArray[playersGuessArray.length - 1].split('')
+        guessCharactureDivs[25].innerText = playersGuessCharactersSixth[0].toUpperCase()
+        guessCharactureDivs[26].innerText = playersGuessCharactersSixth[1].toUpperCase()
+        guessCharactureDivs[27].innerText = playersGuessCharactersSixth[2].toUpperCase()
+        guessCharactureDivs[28].innerText = playersGuessCharactersSixth[3].toUpperCase()
+        guessCharactureDivs[29].innerText = playersGuessCharactersSixth[4].toUpperCase()
+
+    }
+}
+
+function checkWinner(event) {
+    if (currentWordle.toUpperCase() === playersGuess.toUpperCase()) {
+        winner = true
+    } else if (playersGuessArray.length === 6 &&
+        currentWordle.toUpperCase() !== playersGuess.toUpperCase()) {
+        return lost = true
+
+    } else if (currentWordle.toUpperCase() !== playersGuess.toUpperCase()) {
+        console.log(currentWordle);
+        console.log((playersGuessArray.length));
+        confirm
+    }
+}
+// }
+
+function displayWinOrLose() {
+    if (winner === true) {
+        resultsDisplay.innerText = `Congrats You Guessed the Word: ${currentWordle}`
+    } else if (lost === true) {
+        resultsDisplay.innerText = `Unlucky the word was: ${currentWordle}`
+    } else if (lost === false && winner === false) {
+        resultsDisplay.innerText = `Keep Guessing`
+    }
+}
 
 function playGame() {
-storeGuess()
-playersGuessIntoChar()
+    if (currentWordle === '') {
+        randomWord()
+    } else if (winner === true) {
+        return
+    } else if (lost === true) {
+        return
+    } else
+        if (currentWordle !== '') {
+            storeGuess()
+            playersGuessIntoChar()
+            checkWinner()
+            displayWinOrLose()
+        }
 }
 function sayhello() {
-    randomWord()
     console.log(currentWordleArray);
 }
 /*----------------------------- Event Listeners -----------------------------*/
 
+// currentWordleArray = currentWordle.split('') 
 
 restartBtn.addEventListener('click', sayhello)
 
