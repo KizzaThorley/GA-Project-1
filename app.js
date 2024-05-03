@@ -4,7 +4,7 @@ import wordList from './data.js'
 /*-------------------------------- Constants --------------------------------*/
 // wordList.randomWord 
 
-const letter = 'abcdefghijklmnopqrstuvwxyz'
+const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 // could make this an array with idividuals
 
 
@@ -154,6 +154,8 @@ function playGame() {
             playersGuessIntoChar()
             checkWinner()
             displayWinOrLose()
+            // Checkchars()
+            guessInput.value =  ''
         }
 }
 function restartGame() {
@@ -170,9 +172,12 @@ console.log(currentWordle);
 
 
 
-function Checkchars() {
+// function Checkchars() {
+//     currentWordleArray =  currentWordle.split("")
+    
 
-}
+    // }
+
 
 function keyboard() {
 
@@ -186,4 +191,22 @@ restartBtn.addEventListener('click', restartGame)
 
 checkGuessBtn.addEventListener('click', playGame)
 // console.log(playersGuess);
+// .addEventListener('click', (event) => {
+//     console.log('hello');
+// })
 
+onScreenKeyboard.forEach((letterKey) => {
+    letterKey.addEventListener('click', (event) => {
+       let clickedLetter = event.target.id 
+       if (event.target.id === 'del') { 
+        guessInput.value = guessInput.value.replace(/.$/, '')
+       } else {
+        guessInput.value += clickedLetter
+       }
+    })
+})
+
+
+function hello() {
+    console.log(hello);
+}
