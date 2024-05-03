@@ -23,6 +23,8 @@ let playersGuessCharactersSixth = []
 
 let pastPlayerGuessesCharArray = []
 
+let numberOfWins = 0
+
 let winner = false
 let lost = false
 /*------------------------ Cached Element References ------------------------*/
@@ -124,7 +126,7 @@ function checkWinner(event) {
     } else if (currentWordle.toUpperCase() !== playersGuess.toUpperCase()) {
         console.log(currentWordle);
         console.log((playersGuessArray.length));
-        confirm
+        winner = false
     }
 }
 // }
@@ -154,15 +156,34 @@ function playGame() {
             displayWinOrLose()
         }
 }
-function sayhello() {
-    console.log(currentWordleArray);
+function restartGame() {
+    winner = false
+    lost = false
+    resultsDisplay.innerText = `Keep Guessing`
+    guessCharactureDivs.forEach((box) => {
+        box.innerText = ''
+    })
+    playersGuessArray = []
+    randomWord()
+console.log(currentWordle);
+}
+
+
+
+function Checkchars() {
+
+}
+
+function keyboard() {
+
 }
 /*----------------------------- Event Listeners -----------------------------*/
 
 // currentWordleArray = currentWordle.split('') 
 
-restartBtn.addEventListener('click', sayhello)
+restartBtn.addEventListener('click', restartGame)
 
 
 checkGuessBtn.addEventListener('click', playGame)
 // console.log(playersGuess);
+
