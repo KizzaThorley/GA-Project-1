@@ -133,9 +133,9 @@ function checkWinner(event) {
 
 function displayWinOrLose() {
     if (winner === true) {
-        resultsDisplay.innerText = `Congrats You Guessed the Word: ${currentWordle}`
+        resultsDisplay.innerText = `Congrats You Guessed the Word: ${currentWordle.toLocaleUpperCase()}`
     } else if (lost === true) {
-        resultsDisplay.innerText = `Unlucky the word was: ${currentWordle}`
+        resultsDisplay.innerText = `Unlucky the word was: ${currentWordle.toLocaleUpperCase()}`
     } else if (lost === false && winner === false) {
         resultsDisplay.innerText = `Keep Guessing`
     }
@@ -210,3 +210,9 @@ onScreenKeyboard.forEach((letterKey) => {
 function hello() {
     console.log(hello);
 }
+
+guessInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        playGame()
+    }
+})
