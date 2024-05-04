@@ -51,7 +51,7 @@ function randomWord() {
 
 const storeGuess = (event) => {
     playersGuess = guessInput.value
-    if (wordList.randomWord.includes(playersGuess) === false ) {
+    if (wordList.randomWord.includes(playersGuess.toLocaleLowerCase()) === false ) {
 return
 //  resultsDisplay.innerText = `Sorry that is not in the word list`
 // line isnt working yet 
