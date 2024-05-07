@@ -25,6 +25,17 @@ let playersGuessObjectArray = [
     [],
 ]
 
+let matchedCharacturesInGuesses = [
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', '']
+]
+let matchedCharactures = []
+let notMatchedCharactures = []
+
 
 let numberOfWins = 0
 
@@ -69,63 +80,6 @@ const storeGuess = (event) => {
 }
 
 
-// let playersGuessCharactersFirst = []
-// let playersGuessCharactersSecond = []
-// let playersGuessCharactersThird = []
-// let playersGuessCharactersFourth = []
-// let playersGuessCharactersFifth = []
-// let playersGuessCharactersSixth = []
-// function playersGuessIntoChar() {
-//     if (playersGuessArray.length === 1) {
-//         playersGuessCharactersFirst = playersGuessArray[playersGuessArray.length - 1].split('')
-//         guessCharactureDivs[0].innerText = playersGuessCharactersFirst[0].toUpperCase()
-//         guessCharactureDivs[1].innerText = playersGuessCharactersFirst[1].toUpperCase()
-//         guessCharactureDivs[2].innerText = playersGuessCharactersFirst[2].toUpperCase()
-//         guessCharactureDivs[3].innerText = playersGuessCharactersFirst[3].toUpperCase()
-//         guessCharactureDivs[4].innerText = playersGuessCharactersFirst[4].toUpperCase()
-//     } else if (playersGuessArray.length === 2) {
-//         playersGuessCharactersSecond = playersGuessArray[playersGuessArray.length - 1].split('')
-//         guessCharactureDivs[5].innerText = playersGuessCharactersSecond[0].toUpperCase()
-//         guessCharactureDivs[6].innerText = playersGuessCharactersSecond[1].toUpperCase()
-//         guessCharactureDivs[7].innerText = playersGuessCharactersSecond[2].toUpperCase()
-//         guessCharactureDivs[8].innerText = playersGuessCharactersSecond[3].toUpperCase()
-//         guessCharactureDivs[9].innerText = playersGuessCharactersSecond[4].toUpperCase()
-
-//     } else if (playersGuessArray.length === 3) {
-//         playersGuessCharactersThird = playersGuessArray[playersGuessArray.length - 1].split('')
-//         guessCharactureDivs[10].innerText = playersGuessCharactersThird[0].toUpperCase()
-//         guessCharactureDivs[11].innerText = playersGuessCharactersThird[1].toUpperCase()
-//         guessCharactureDivs[12].innerText = playersGuessCharactersThird[2].toUpperCase()
-//         guessCharactureDivs[13].innerText = playersGuessCharactersThird[3].toUpperCase()
-//         guessCharactureDivs[14].innerText = playersGuessCharactersThird[4].toUpperCase()
-
-//     } else if (playersGuessArray.length === 4) {
-//         playersGuessCharactersFourth = playersGuessArray[playersGuessArray.length - 1].split('')
-//         guessCharactureDivs[15].innerText = playersGuessCharactersFourth[0].toUpperCase()
-//         guessCharactureDivs[16].innerText = playersGuessCharactersFourth[1].toUpperCase()
-//         guessCharactureDivs[17].innerText = playersGuessCharactersFourth[2].toUpperCase()
-//         guessCharactureDivs[18].innerText = playersGuessCharactersFourth[3].toUpperCase()
-//         guessCharactureDivs[19].innerText = playersGuessCharactersFourth[4].toUpperCase()
-
-//     } else if (playersGuessArray.length === 5) {
-//         playersGuessCharactersFifth = playersGuessArray[playersGuessArray.length - 1].split('')
-//         guessCharactureDivs[20].innerText = playersGuessCharactersFifth[0].toUpperCase()
-//         guessCharactureDivs[21].innerText = playersGuessCharactersFifth[1].toUpperCase()
-//         guessCharactureDivs[22].innerText = playersGuessCharactersFifth[2].toUpperCase()
-//         guessCharactureDivs[23].innerText = playersGuessCharactersFifth[3].toUpperCase()
-//         guessCharactureDivs[24].innerText = playersGuessCharactersFifth[4].toUpperCase()
-
-//     } else if (playersGuessArray.length === 6) {
-//         playersGuessCharactersSixth = playersGuessArray[playersGuessArray.length - 1].split('')
-//         guessCharactureDivs[25].innerText = playersGuessCharactersSixth[0].toUpperCase()
-//         guessCharactureDivs[26].innerText = playersGuessCharactersSixth[1].toUpperCase()
-//         guessCharactureDivs[27].innerText = playersGuessCharactersSixth[2].toUpperCase()
-//         guessCharactureDivs[28].innerText = playersGuessCharactersSixth[3].toUpperCase()
-//         guessCharactureDivs[29].innerText = playersGuessCharactersSixth[4].toUpperCase()
-
-//     }
-// }
-
 
 function displayPlayersGuessInChars() {
     currentWordleGuessIdx = playersGuessArray.length - 1
@@ -144,31 +98,22 @@ function displayPlayersGuessInChars() {
 
 }
 
-let matchedCharacturesInGuesses = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-]
-let matchedCharactures = []
-let notMatchedCharactures = []
+
 function checkCharsMatch([char1, char2, char3, char4, char5]) {
     console.log(playersGuessObjectArray[currentWordleGuessIdx]);
-    playersGuessObjectArray[currentWordleGuessIdx].forEach((letter) => {
+    playersGuessObjectArray[currentWordleGuessIdx].forEach((letter, idx) => {
         const lowerLetter = letter.toLowerCase()
         if (char1 === lowerLetter || char2 === lowerLetter || char3 === lowerLetter || char4 === lowerLetter || char5 === lowerLetter) 
         {
             matchedCharactures.push(lowerLetter)
-            matchedCharacturesInGuesses[currentWordleGuessIdx].push(lowerLetter)
+            matchedCharacturesInGuesses[currentWordleGuessIdx].splice(currentWordleGuessIdx, letter.length, lowerLetter)
         } else if (char1 !== lowerLetter || char2 !== lowerLetter || char3 !== lowerLetter || char4 !== lowerLetter || char5 !== lowerLetter) 
         {
             notMatchedCharactures.push(lowerLetter)
         }
     })
     // console.log(`${matchedCharactures} is matched`);
-    // console.log(`rows of matched ${matchedCharacturesInGuesses}`);
+    console.log(matchedCharacturesInGuesses);
     // console.log(`not matched = ${notMatchedCharactures}`);
 }
 
@@ -191,18 +136,6 @@ letterOnKeyboard.classList.remove('not-in-word')
     }
 )
 }
-// let currentWordleLetters = playersGuessObjectArray[currentWordleGuessIdx].forEach()
-
-
-// function checkChars([char1, char2, char3, char4, char5]) {
-//     if (playersGuessArray.length === 1) {
-//         playersGuessCharactersFirst.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 testLetters.push(letter)
-
-//         })
-
 
 
 function checkWinner(event) {
@@ -263,60 +196,6 @@ function restartGame() {
     // console.log(currentWordle);
 }
 
-let testLetters = []
-
-
-
-
-// function checkChars([char1, char2, char3, char4, char5]) {
-//     if (playersGuessArray.length === 1) {
-//         playersGuessCharactersFirst.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 testLetters.push(letter)
-
-//         })
-//     } else if (playersGuessArray.length === 2) {
-//         playersGuessCharactersSecond.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 return testLetters.push(letter)
-//             console.log(testLetters);
-//         })
-//     } else if (playersGuessArray.length === 3) {
-//         playersGuessCharactersThird.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 return testLetters.push(letter)
-//             console.log(testLetters);
-//         })
-//     } else if (playersGuessArray.length === 4) {
-//         playersGuessCharactersFourth.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 return testLetters.push(letter)
-//             console.log(testLetters);
-//         })
-//     } else if (playersGuessArray.length === 5) {
-//         playersGuessCharactersFifth.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 return testLetters.push(letter)
-//             console.log(testLetters);
-//         })
-//     } else if (playersGuessArray.length === 6) {
-//         playersGuessCharactersSixth.forEach((letter) => {
-//             if (char1 === letter || char2 === letter || char3 === letter
-//                 || char4 === letter || char5 === letter)
-//                 return testLetters.push(letter)
-//             console.log(testLetters);
-//         })
-//     }
-// }
-
-
-// join()
-// }
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -340,10 +219,6 @@ onScreenKeyboard.forEach((letterKey) => {
     })
 })
 
-
-function hello() {
-    console.log(hello);
-}
 
 guessInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
