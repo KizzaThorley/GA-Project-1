@@ -1,19 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
 * {
     box-sizing: border-box;
 }
+
 body {
-    background-color:darkcyan;
+    background-color: darkcyan;
     font-family: Bubblegum sans, sans-serif;
-    margin: 0; 
+    margin: 0;
     text-align: center;
     display: flex;
     flex-direction: column;
     color: white;
-  }
-  h2 {
+}
+
+h2 {
     margin-top: 0px;
-  }
+    margin-bottom: 0px;
+}
+
 h3 {
     margin-top: 0px;
 }
@@ -30,50 +35,50 @@ h3 {
 }
 
 .guess-sqr {
-font-size: 40px;
-border: 1px solid black;
-width: 19%;
-aspect-ratio: 1/1;
-background-color: lightslategray;
-text-align: center;
+    font-size: 40px;
+    border: 1px solid black;
+    width: 19%;
+    aspect-ratio: 1/1;
+    background-color: lightslategray;
+    text-align: center;
 
 }
 
-.keyboard{
+.keyboard {
     display: flex;
     flex-wrap: wrap;
-    width: 400px;         
+    width: 400px;
     justify-content: center;
     align-items: center;
     margin: auto;
-    margin-top: 10px; 
+    margin-top: 10px;
     justify-content: space-between;
     height: 140px;
 }
 
 .key-sqr {
-    
+
     font-size: 30px;
     border: 1px solid black;
     width: 35px;
     background-color: lightslategray;
-    
-    }
-    
+
+}
+
 .guess-items {
-margin: 20px;
+    margin: 20px;
 }
 
 .key-line {
-display: flex;
-justify-content: center;
-width: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
 }
 
 #key-line-1 {
     justify-content: space-between;
-    
+
 }
 
 #key-line-2 {
@@ -82,7 +87,7 @@ width: 100%;
     align-items: center;
     margin: auto;
     justify-content: space-between;
-    
+
 }
 
 #key-line-3 {
@@ -99,9 +104,10 @@ width: 100%;
     width: 100%;
     justify-content: space-between;
 }
+
 #restart {
     margin-top: 20px;
-  
+
 }
 
 .not-in-word {
@@ -114,4 +120,22 @@ width: 100%;
 
 .in-wrong-spot {
     background-color: rgb(206, 203, 11);
+}
+
+.points {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    justify-content: space-around;
+    width: 120px;
+    flex-wrap: wrap;
+
+}
+
+.points-button {
+    color: black;
+}
+.hidden {
+    display: none;
 }

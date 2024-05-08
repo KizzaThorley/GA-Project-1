@@ -17,7 +17,7 @@ let playersGuessArray = []
 let currentGuessSqrIdx = 0
 let currentWordleGuessIdx = 0
 let playersGuessObjectArray = [
-    [],
+    [''],
     [],
     [],
     [],
@@ -37,7 +37,7 @@ let matchedCharactures = []
 let notMatchedCharactures = []
 
 
-let numberOfWins = 0
+let points = 0
 
 let winner = false
 let lost = false
@@ -54,7 +54,7 @@ const onScreenKeyboard = document.querySelectorAll('.key-sqr')
 
 const resultsDisplay = document.querySelector('#results')
 
-
+const pointsTally = document.querySelector('.points-tally')
 
 /*-------------------------------- Functions --------------------------------*/
 function randomWord() {
@@ -65,67 +65,79 @@ function randomWord() {
 
 const storeGuess = (event) => {
     playersGuess = guessInput.value
-    if (wordList.randomWord.includes(playersGuess.toLocaleLowerCase()) === false) {
-        return resultsDisplay.innerText = `Sorry that is not in the word list`
+    if (playersGuess.length >= 6 || playersGuess <= 4) {
+        return
+    }
+    else if (wordList.randomWord.includes(playersGuess.toLowerCase()) === false) {
+        return
     }
     else if (playersGuessArray.length <= 5 && playersGuess.length === 5) {
         playersGuessArray.push(`${playersGuess}`)
-    } else if (playersGuessArray.length === 6) {
+    }
+    else if (playersGuessArray.length >= 6) {
         return
     }
-    // console.log(playersGuessArray);
-    // console.log(playersGuess.length);
 }
-
 
 
 function displayPlayersGuessInChars() {
     currentWordleGuessIdx = playersGuessArray.length - 1
     currentGuessSqrIdx = (playersGuessArray.length - 1) * 5
-    playersGuessObjectArray.splice(currentWordleGuessIdx, 1, playersGuessArray[currentWordleGuessIdx].split(''))
-    guessCharactureDivs[currentGuessSqrIdx].innerText =
-        playersGuessObjectArray[currentWordleGuessIdx][0].toUpperCase()
-    guessCharactureDivs[currentGuessSqrIdx + 1].innerText =
-        playersGuessObjectArray[currentWordleGuessIdx][1].toUpperCase()
-    guessCharactureDivs[currentGuessSqrIdx + 2].innerText =
-        playersGuessObjectArray[currentWordleGuessIdx][2].toUpperCase()
-    guessCharactureDivs[currentGuessSqrIdx + 3].innerText =
-        playersGuessObjectArray[currentWordleGuessIdx][3].toUpperCase()
-    guessCharactureDivs[currentGuessSqrIdx + 4].innerText =
-        playersGuessObjectArray[currentWordleGuessIdx][4].toUpperCase()
-
+    if (playersGuessArray.length === 0) {
+        return
+    } else {
+        playersGuessObjectArray.splice(currentWordleGuessIdx, 1, playersGuessArray[currentWordleGuessIdx].split(''))
+        for (let currentIdx = 0; currentIdx <= 4; currentIdx++) {
+            guessCharactureDivs[currentGuessSqrIdx + currentIdx].innerText =
+                playersGuessObjectArray[currentWordleGuessIdx][currentIdx].toUpperCase()
+        }
+        // guessCharactureDivs[currentGuessSqrIdx + 1].innerText =
+        //     playersGuessObjectArray[currentWordleGuessIdx][1].toUpperCase()
+        // guessCharactureDivs[currentGuessSqrIdx + 2].innerText =
+        //     playersGuessObjectArray[currentWordleGuessIdx][2].toUpperCase()
+        // guessCharactureDivs[currentGuessSqrIdx + 3].innerText =
+        //     playersGuessObjectArray[currentWordleGuessIdx][3].toUpperCase()
+        // guessCharactureDivs[currentGuessSqrIdx + 4].innerText =
+        //     playersGuessObjectArray[currentWordleGuessIdx][4].toUpperCase()
+    }
 }
-
 
 function checkCharsMatch([char1, char2, char3, char4, char5]) {
-    playersGuessObjectArray[currentWordleGuessIdx].forEach((letter, idx) => {
-        const lowerLetter = letter.toLowerCase()
-        if (char1 === lowerLetter || char2 === lowerLetter || char3 === lowerLetter || char4 === lowerLetter || char5 === lowerLetter) {
-            matchedCharactures.push(lowerLetter)
-            matchedCharacturesInGuesses[currentWordleGuessIdx].splice(idx, 1, lowerLetter)
+    if (playersGuessArray.length === 0) {
+        return
+    } else {
+        playersGuessObjectArray[currentWordleGuessIdx].forEach((letter, idx) => {
+            const lowerLetter = letter.toLowerCase()
+            if (char1 === lowerLetter || char2 === lowerLetter || char3 === lowerLetter || char4 === lowerLetter || char5 === lowerLetter) {
+                matchedCharactures.push(lowerLetter)
+                matchedCharacturesInGuesses[currentWordleGuessIdx].splice(idx, 1, lowerLetter)
 
-        } else if (char1 !== lowerLetter || char2 !== lowerLetter || char3 !== lowerLetter || char4 !== lowerLetter || char5 !== lowerLetter) {
-            notMatchedCharactures.push(lowerLetter)
-        }
-    })
-    // console.log(`${matchedCharactures} is matched`);
-    // console.log(matchedCharacturesInGuesses);
-    // console.log(`not matched = ${notMatchedCharactures}`);
+            } else if (char1 !== lowerLetter || char2 !== lowerLetter || char3 !== lowerLetter || char4 !== lowerLetter || char5 !== lowerLetter) {
+                notMatchedCharactures.push(lowerLetter)
+            }
+        })
+        // console.log(`${matchedCharactures} is matched`);
+        // console.log(matchedCharacturesInGuesses);
+        // console.log(`not matched = ${notMatchedCharactures}`);
+    }
 }
 
-let matchedSpotGuess = []
+
 function rightSpotWrongSpot() {
-    for (let currentIdx = 0; currentIdx <=4; currentIdx++) {
+    if (playersGuessArray.length === 0) {
+        return
+    } else {
+        for (let currentIdx = 0; currentIdx <= 4; currentIdx++) {
 
-    if (matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] === currentWordleArray[currentIdx]) {
-        guessCharactureDivs[currentIdx + currentGuessSqrIdx].classList.add('in-word')
+            if (matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] === currentWordleArray[currentIdx]) {
+                guessCharactureDivs[currentIdx + currentGuessSqrIdx].classList.add('in-word')
+            }
+            else if (matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== currentWordleArray[currentIdx] && matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== '') {
+                guessCharactureDivs[currentIdx + currentGuessSqrIdx].classList.add('in-wrong-spot')
+            }
+
         }
-        else if (matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== currentWordleArray[currentIdx] && matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== '') {
-            guessCharactureDivs[currentIdx + currentGuessSqrIdx].classList.add('in-wrong-spot')
-        } 
-
     }
-
 }
 
 
@@ -151,8 +163,8 @@ function resetGuessColors() {
     }
     )
     guessCharactureDivs.forEach((guessSqr) => {
-    guessSqr.classList.remove('in-word')
-    guessSqr.classList.remove('in-wrong-spot')
+        guessSqr.classList.remove('in-word')
+        guessSqr.classList.remove('in-wrong-spot')
     })
 }
 
@@ -160,6 +172,8 @@ function resetGuessColors() {
 function checkWinner(event) {
     if (currentWordle.toUpperCase() === playersGuess.toUpperCase()) {
         winner = true
+        points = points + 1
+        pointsTally.innerText = points
     } else if (playersGuessArray.length === 6 &&
         currentWordle.toUpperCase() !== playersGuess.toUpperCase()) {
         return lost = true
@@ -172,10 +186,15 @@ function checkWinner(event) {
 // }
 
 function displayWinOrLose() {
+
     if (winner === true) {
         resultsDisplay.innerText = `Congrats You Guessed the Word: ${currentWordle.toLocaleUpperCase()}`
     } else if (lost === true) {
         resultsDisplay.innerText = `Unlucky the word was: ${currentWordle.toLocaleUpperCase()}`
+    } else if (guessInput.value.length >= 6 || guessInput.value.length <= 4) {
+        resultsDisplay.innerText = `It has to be 5 letters`
+    } else if (wordList.randomWord.includes(guessInput.value.toLowerCase()) === false) {
+        resultsDisplay.innerText = `Sorry that words not on our List`
     } else if (lost === false && winner === false) {
         resultsDisplay.innerText = `Keep Guessing`
     }
@@ -256,3 +275,16 @@ guessInput.addEventListener('keydown', (event) => {
 })
 
 
+const pointsDisplay = document.querySelector('.points')
+
+pointsDisplay.addEventListener('click', (event) => {
+    const pointsResetButton = document.querySelector('.points-button')
+    pointsResetButton.classList.remove('hidden')
+    pointsResetButton.addEventListener('click',)
+
+})
+
+
+
+// ease in 
+// ease out
