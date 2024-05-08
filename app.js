@@ -56,6 +56,10 @@ const resultsDisplay = document.querySelector('#results')
 
 const pointsTally = document.querySelector('.points-tally')
 
+const pointsDisplay = document.querySelector('.points-display')
+
+const rulesTitle = document.querySelector('.rules-title')
+
 /*-------------------------------- Functions --------------------------------*/
 function randomWord() {
     const randomIdx = Math.floor(Math.random() * wordList.randomWord.length)
@@ -91,14 +95,6 @@ function displayPlayersGuessInChars() {
             guessCharactureDivs[currentGuessSqrIdx + currentIdx].innerText =
                 playersGuessObjectArray[currentWordleGuessIdx][currentIdx].toUpperCase()
         }
-        // guessCharactureDivs[currentGuessSqrIdx + 1].innerText =
-        //     playersGuessObjectArray[currentWordleGuessIdx][1].toUpperCase()
-        // guessCharactureDivs[currentGuessSqrIdx + 2].innerText =
-        //     playersGuessObjectArray[currentWordleGuessIdx][2].toUpperCase()
-        // guessCharactureDivs[currentGuessSqrIdx + 3].innerText =
-        //     playersGuessObjectArray[currentWordleGuessIdx][3].toUpperCase()
-        // guessCharactureDivs[currentGuessSqrIdx + 4].innerText =
-        //     playersGuessObjectArray[currentWordleGuessIdx][4].toUpperCase()
     }
 }
 
@@ -116,9 +112,6 @@ function checkCharsMatch([char1, char2, char3, char4, char5]) {
                 notMatchedCharactures.push(lowerLetter)
             }
         })
-        // console.log(`${matchedCharactures} is matched`);
-        // console.log(matchedCharacturesInGuesses);
-        // console.log(`not matched = ${notMatchedCharactures}`);
     }
 }
 
@@ -183,7 +176,7 @@ function checkWinner(event) {
         console.log(currentWordle);
     }
 }
-// }
+
 
 function displayWinOrLose() {
 
@@ -244,10 +237,32 @@ function restartGame() {
 }
 
 
+function pointsButtonsDropdown() {
+    const pointsResetButton = document.querySelector('.points-button')
+    if (pointsResetButton.classList.contains('hidden')) {
+        pointsResetButton.classList.remove('hidden')
+        pointsResetButton.addEventListener('click', resetPoints)
+    } else {
+        pointsResetButton.classList.add('hidden')
+    }
+}
+function resetPoints() {
+    points = 0
+    pointsTally.innerText = points
+}
+
+function rulesDropdown() {
+    const rulesList = document.querySelectorAll('.all-rules')
+    rulesList.forEach((rule) => {
+        if (rule.classList.contains('hidden')) {
+            rule.classList.remove('hidden')
+        } else {
+            rule.classList.add('hidden')
+        }
+    })
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
-
-// currentWordleArray = currentWordle.split('') 
 
 restartBtn.addEventListener('click', restartGame)
 
@@ -275,15 +290,11 @@ guessInput.addEventListener('keydown', (event) => {
 })
 
 
-const pointsDisplay = document.querySelector('.points')
+pointsDisplay.addEventListener('click', pointsButtonsDropdown)
 
-pointsDisplay.addEventListener('click', (event) => {
-    const pointsResetButton = document.querySelector('.points-button')
-    pointsResetButton.classList.remove('hidden')
-    pointsResetButton.addEventListener('click',)
 
-})
 
+rulesTitle.addEventListener('click', rulesDropdown)
 
 
 // ease in 

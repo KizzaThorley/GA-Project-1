@@ -11,9 +11,16 @@
 </head>
 <body>
     <h1>Wordle</h1>
-    <h2>The Word Guessing Game</h2>
+    <section class="rules">
+    <h2 class="rules-title">The Word Guessing Game</h2>
+    <li class="all-rules hidden">Each guess must be a five-letter word.</li>
+    <li class="all-rules hidden">The tiles will change color with your guess</li>
+    <li class="all-rules hidden">Yellow means right letter wrong spot</li>
+    <li class="all-rules hidden">Green means right letter right spot</li>
+    <li class="all-rules hidden">Red squares on the keyboard are incorect letters</li>
+    </section>
     <section class="points">
-        <p class="points-display">Current Points: <span class="points-tally"></span></p>
+        <p class="points-display">Current Points: <span class="points-tally">0</span></p>
         <button class="points-button hidden">Reset-Points</button>
         </section>
     <h3 id="results">Take your first guess</h3>

@@ -17,6 +17,7 @@ body {
 h2 {
     margin-top: 0px;
     margin-bottom: 0px;
+    cursor: pointer;
 }
 
 h3 {
@@ -134,8 +135,23 @@ h3 {
 }
 
 .points-button {
-    color: black;
+   margin-bottom: 10px;
 }
+
 .hidden {
     display: none;
+}
+
+.points-display {
+    cursor: pointer;
+}
+.rules {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    justify-content: space-around;
+    width: 320px;
+    flex-wrap: wrap;
+    
 }
