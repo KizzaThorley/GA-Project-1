@@ -2,10 +2,9 @@ import wordList from './data.js'
 
 
 /*-------------------------------- Constants --------------------------------*/
-// wordList.randomWord 
 
-const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-// could make this an array with idividuals
+
+
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -133,7 +132,7 @@ function rightSpotWrongSpot() {
             }
             else if (matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== currentWordleArray[currentIdx] && matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== '') {
                 guessCharactureDivs[currentIdx + currentGuessSqrIdx].classList.add('in-wrong-spot')
-            } 
+            }
 
 
         }
@@ -152,7 +151,7 @@ function changeColorOfGuesedCharactures() {
     })
     notMatchedCharactures.forEach((letter) => {
         document.getElementById(`${letter}`).classList.add('not-in-word')
-        
+
 
     })
 }
@@ -169,7 +168,7 @@ function resetGuessColors() {
     })
 }
 
- 
+
 function checkWinner(event) {
     if (currentWordle.toUpperCase() === playersGuess.toUpperCase()) {
         winner = true
@@ -182,7 +181,6 @@ function checkWinner(event) {
 
     } else if (currentWordle.toUpperCase() !== playersGuess.toUpperCase()) {
         winner = false
-        console.log(currentWordle);
     }
 }
 
@@ -307,26 +305,25 @@ rulesTitle.addEventListener('click', rulesDropdown)
 
 
 
-
 visualMode.addEventListener('click', (event) => {
     if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode') 
+        body.classList.remove('light-mode')
         visualMode.innerText = 'Light-mode'
         onScreenKeyboard.forEach((key) => {
-           key.classList.remove('light-sqr')
+            key.classList.remove('light-sqr')
         })
         guessCharactureDivs.forEach((key) => {
             key.classList.remove('light-sqr')
-         })
+        })
     } else {
-    body.classList.add('light-mode')
-    visualMode.innerText = 'Dark-mode'
-    guessCharactureDivs.forEach((key) => {
-        key.classList.add('light-sqr')
-     })
-     onScreenKeyboard.forEach((key) => {
-        key.classList.add('light-sqr')
-     })
+        body.classList.add('light-mode')
+        visualMode.innerText = 'Dark-mode'
+        guessCharactureDivs.forEach((key) => {
+            key.classList.add('light-sqr')
+        })
+        onScreenKeyboard.forEach((key) => {
+            key.classList.add('light-sqr')
+        })
     }
 })
 
@@ -334,30 +331,4 @@ visualMode.addEventListener('click', (event) => {
 
 
 
-
-
-
-
-
-
-
-// function rulesDropdown() {
-//     const rulesList = document.querySelectorAll('.all-rules')
-//     rulesList.forEach((rule) => {
-//         if (rule.classList.contains('hidden')) {
-//             rule.style.transition = 'opacity 0.5s ease-in';
-//             rule.classList.remove('hidden')
-//             setTimeout(() => {
-//                 rule.style.opacity = '1';
-//             }, 500);
-//         } else {
-//             rule.style.opacity = '0'
-//             setTimeout(() => {
-//                 rule.style.transition = 'none';
-//                 rule.classList.add('hidden')
-//             }, 500);
-            
-//         }
-//     })
-// }
 
