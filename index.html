@@ -14,10 +14,10 @@
     <section class="rules">
     <h2 class="rules-title">The Word Guessing Game</h2>
     <li class="all-rules hidden">Each guess must be a five-letter word.</li>
-    <li class="all-rules hidden">The tiles will change color with your guess</li>
+    <li class="all-rules hidden">The tiles will change colour with your guess</li>
     <li class="all-rules hidden">Yellow and bold means right letter wrong spot</li>
     <li class="all-rules hidden">Green and underlined means right letter right spot</li>
-    <li class="all-rules hidden">Red and italic squares on the keyboard are incorect letters</li>
+    <li class="all-rules hidden">Red and italic squares on the keyboard are incorrect letters</li>
     </section>
     <section class="points">
         <p class="points-display">Current Points: <span class="points-tally">0</span></p>
@@ -69,7 +69,7 @@
 </section>
 </section>
 <section class="guess-items">
-    <input type="text" id ="players-guess">
+    <input type="text" name="players-guess" aria-label="players-guess" id ="players-guess">
  <button id="guess">Guess</button>
 </section>
 <section class="keyboard">
@@ -111,5 +111,6 @@
 <button id="restart">Restart</button>
 <button id="light-dark">Light-Mode</button>
 </section>
+<audio id="audio" src="./sounds/correct.mp3"></audio>
 </body>
 </html>

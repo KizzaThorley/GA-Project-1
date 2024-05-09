@@ -64,6 +64,8 @@ const body = document.querySelector('body')
 
 const visualMode = document.getElementById('light-dark')
 
+const winningAudio = document.getElementById('audio')
+
 /*-------------------------------- Functions --------------------------------*/
 function randomWord() {
     const randomIdx = Math.floor(Math.random() * wordList.randomWord.length)
@@ -131,7 +133,8 @@ function rightSpotWrongSpot() {
             }
             else if (matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== currentWordleArray[currentIdx] && matchedCharacturesInGuesses[currentWordleGuessIdx][currentIdx] !== '') {
                 guessCharactureDivs[currentIdx + currentGuessSqrIdx].classList.add('in-wrong-spot')
-            }
+            } 
+
 
         }
     }
@@ -166,10 +169,11 @@ function resetGuessColors() {
     })
 }
 
-
+ 
 function checkWinner(event) {
     if (currentWordle.toUpperCase() === playersGuess.toUpperCase()) {
         winner = true
+        winningAudio.play()
         points = points + 1
         pointsTally.innerText = points
     } else if (playersGuessArray.length === 6 &&
@@ -237,8 +241,8 @@ function restartGame() {
         box.innerText = ''
     })
     playersGuessArray = []
+    guessInput.value = ''
     randomWord()
-    // console.log(currentWordle);
 }
 
 
@@ -302,8 +306,6 @@ pointsDisplay.addEventListener('click', pointsButtonsDropdown)
 rulesTitle.addEventListener('click', rulesDropdown)
 
 
-// ease in 
-// ease out
 
 
 visualMode.addEventListener('click', (event) => {
@@ -329,5 +331,33 @@ visualMode.addEventListener('click', (event) => {
 })
 
 
-// onScreenKeyboard
-// guessCharactureDivs
+
+
+
+
+
+
+
+
+
+
+// function rulesDropdown() {
+//     const rulesList = document.querySelectorAll('.all-rules')
+//     rulesList.forEach((rule) => {
+//         if (rule.classList.contains('hidden')) {
+//             rule.style.transition = 'opacity 0.5s ease-in';
+//             rule.classList.remove('hidden')
+//             setTimeout(() => {
+//                 rule.style.opacity = '1';
+//             }, 500);
+//         } else {
+//             rule.style.opacity = '0'
+//             setTimeout(() => {
+//                 rule.style.transition = 'none';
+//                 rule.classList.add('hidden')
+//             }, 500);
+            
+//         }
+//     })
+// }
+
