@@ -60,6 +60,10 @@ const pointsDisplay = document.querySelector('.points-display')
 
 const rulesTitle = document.querySelector('.rules-title')
 
+const body = document.querySelector('body')
+
+const visualMode = document.getElementById('light-dark')
+
 /*-------------------------------- Functions --------------------------------*/
 function randomWord() {
     const randomIdx = Math.floor(Math.random() * wordList.randomWord.length)
@@ -145,6 +149,7 @@ function changeColorOfGuesedCharactures() {
     })
     notMatchedCharactures.forEach((letter) => {
         document.getElementById(`${letter}`).classList.add('not-in-word')
+        
 
     })
 }
@@ -299,3 +304,30 @@ rulesTitle.addEventListener('click', rulesDropdown)
 
 // ease in 
 // ease out
+
+
+visualMode.addEventListener('click', (event) => {
+    if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode') 
+        visualMode.innerText = 'Light-mode'
+        onScreenKeyboard.forEach((key) => {
+           key.classList.remove('light-sqr')
+        })
+        guessCharactureDivs.forEach((key) => {
+            key.classList.remove('light-sqr')
+         })
+    } else {
+    body.classList.add('light-mode')
+    visualMode.innerText = 'Dark-mode'
+    guessCharactureDivs.forEach((key) => {
+        key.classList.add('light-sqr')
+     })
+     onScreenKeyboard.forEach((key) => {
+        key.classList.add('light-sqr')
+     })
+    }
+})
+
+
+// onScreenKeyboard
+// guessCharactureDivs

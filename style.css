@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: darkcyan;
+    background-color: #008282;
     font-family: Bubblegum sans, sans-serif;
     margin: 0;
     text-align: center;
@@ -24,6 +24,7 @@ h3 {
     margin-top: 0px;
 }
 
+
 .word-board {
     display: flex;
     flex-wrap: wrap;
@@ -40,7 +41,7 @@ h3 {
     border: 1px solid black;
     width: 19%;
     aspect-ratio: 1/1;
-    background-color: lightslategray;
+    background-color: rgb(105, 115, 113);
     text-align: center;
 
 }
@@ -62,8 +63,11 @@ h3 {
     font-size: 30px;
     border: 1px solid black;
     width: 35px;
-    background-color: lightslategray;
+    background-color: rgb(105, 115, 113);
 
+}
+.light-sqr {
+    background-color: darkgrey;
 }
 
 .guess-items {
@@ -113,14 +117,18 @@ h3 {
 
 .not-in-word {
     background-color: rgb(220, 41, 41);
+    font-style: italic;
+    
 }
 
 .in-word {
     background-color: rgb(22, 180, 8);
+    text-decoration: underline;
 }
 
 .in-wrong-spot {
     background-color: rgb(206, 203, 11);
+    font-weight: bold;
 }
 
 .points {
@@ -151,7 +159,12 @@ h3 {
     justify-content: center;
     margin: auto;
     justify-content: space-around;
-    width: 320px;
+    width: 360px;
     flex-wrap: wrap;
     
+}
+
+.light-mode {
+    background-color: lightblue;
+    color: black;
 }

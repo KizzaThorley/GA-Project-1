@@ -15,16 +15,16 @@
     <h2 class="rules-title">The Word Guessing Game</h2>
     <li class="all-rules hidden">Each guess must be a five-letter word.</li>
     <li class="all-rules hidden">The tiles will change color with your guess</li>
-    <li class="all-rules hidden">Yellow means right letter wrong spot</li>
-    <li class="all-rules hidden">Green means right letter right spot</li>
-    <li class="all-rules hidden">Red squares on the keyboard are incorect letters</li>
+    <li class="all-rules hidden">Yellow and bold means right letter wrong spot</li>
+    <li class="all-rules hidden">Green and underlined means right letter right spot</li>
+    <li class="all-rules hidden">Red and italic squares on the keyboard are incorect letters</li>
     </section>
     <section class="points">
         <p class="points-display">Current Points: <span class="points-tally">0</span></p>
         <button class="points-button hidden">Reset-Points</button>
         </section>
     <h3 id="results">Take your first guess</h3>
-<section class="word-board">
+<section class="word-board" >
     <section class="guess-word" id="Guess-1">
     <div class="guess-sqr" id="0"></div>
     <div class="guess-sqr" id="1"></div>
@@ -73,7 +73,7 @@
  <button id="guess">Guess</button>
 </section>
 <section class="keyboard">
-    <section class="key-line" id="key-line-1">
+    <section class="key-line " id="key-line-1">
     <div class="key-sqr" id="q">Q</div>
     <div class="key-sqr" id="w">W</div>
     <div class="key-sqr" id="e">E</div>
@@ -107,8 +107,9 @@
     <div class="key-sqr" id="del">␡</div>
     </section>
 </section>
-<section class="reset-button">
+<section class="reset-button visual-button">
 <button id="restart">Restart</button>
+<button id="light-dark">Light-Mode</button>
 </section>
 </body>
 </html>
