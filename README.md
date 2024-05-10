@@ -7,18 +7,21 @@ I wanted to choose worldle to start improving my ability in CSS, JavaScript and 
 ![image of game](./images/wordle.png)
 
 ![image of game in light mode](./images/lightmode.png)
-
-## Description 
+## Rules
 ---
-The program uses a random number to choose that rounds wordle from a data list then the player has 6 guesses <br> in which 7 functions check the word against the worlde and display any relevant changes necessary for the game to progress.<br> below is the HTML for the rules of the game 
+below is the HTML for the rules of the game 
 
 ```html
- <li class="all-rules hidden">Each guess must be a five-letter word.</li>
+    <li class="all-rules hidden">Each guess must be a five-letter word.</li>
     <li class="all-rules hidden">The tiles will change colour with your guess</li>
     <li class="all-rules hidden">Yellow and bold means right letter wrong spot</li>
     <li class="all-rules hidden">Green and underlined means right letter right spot</li>
     <li class="all-rules hidden">Red and italic squares on the keyboard are incorrect letters</li>
 ```
+
+## Description 
+---
+The program uses a random number to choose that rounds wordle from a data list then the player has 6 guesses <br> in which 7 functions check the word against the worlde and display any relevant changes necessary for the game to progress.
 
 
 
@@ -68,9 +71,9 @@ Used to gather an initial list of words
 ## Technologies
 ---
 Languages Used in This Project
-<br>***JavaScript*** 
-<br>***Html***
-<br>***Css***
+<br>***JavaScript***: Used to impliment the game logic
+<br>***Html***: structed the game layout and content 
+<br>***Css***: used to style and infer information clearly on the page
 
 
 ## Next Step 
@@ -145,4 +148,13 @@ the current solution is to use bold italic and underline but can be changed to n
 }
 ```
 
-Future iterations are to combine more word-based games and a landing page to allow one to play multiple word guessing games with the first to be hangman. 
+Future iterations are to combine more word-based games and a landing page to allow one to play multiple word guessing games with the first to be Hangman. <br>
+additionally, more words will be added to the data file to increase the number of appearing 5-letter words
+
+## Key Learning Points 
+---
+1. **Shortening Logic:** one of the most important things I found during the project was how to spot repeatable processes in my logic <br>
+to make my code more efficient and how to think about these from the first time writing.
+2. **Planning with psudo code :** I felt that one of my strong points was the planning however in this I need to split functions up into better categories 
+3. **Understanding variables needed:** One of the weaknesses I found with my pseudo-code was the variables list which I feel i have a better knowledge about after the process  
+4. **Function understanding:** I felt that during this process I have been able to better understand my implementation of functions and when they need to be called.
