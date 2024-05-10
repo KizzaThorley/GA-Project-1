@@ -321,7 +321,6 @@ guessInput.addEventListener('keydown', (event) => {
 pointsDisplay.addEventListener('click', pointsButtonsDropdown)
 
 
-
 rulesTitle.addEventListener('click', rulesDropdown)
 
 
