@@ -1,12 +1,5 @@
 import wordList from './data.js'
 
-
-/*-------------------------------- Constants --------------------------------*/
-
-
-
-
-
 /*---------------------------- Variables (state) ----------------------------*/
 let currentWordle = ''
 let currentWordleArray = []
@@ -40,7 +33,9 @@ let points = 0
 
 let winner = false
 let lost = false
+
 /*------------------------ Cached Element References ------------------------*/
+
 const guessInput = document.querySelector('#players-guess')
 
 const guessCharactureDivs = document.querySelectorAll('.guess-sqr')
@@ -61,11 +56,12 @@ const rulesTitle = document.querySelector('.rules-title')
 
 const body = document.querySelector('body')
 
-const visualMode = document.getElementById('light-dark')
+const lightOrDarkModeBtn = document.getElementById('light-dark')
 
 const winningAudio = document.getElementById('audio')
 
 /*-------------------------------- Functions --------------------------------*/
+
 function randomWord() {
     const randomIdx = Math.floor(Math.random() * wordList.randomWord.length)
     return currentWordle = wordList.randomWord[randomIdx];
@@ -103,6 +99,7 @@ function displayPlayersGuessInChars() {
     }
 }
 
+
 function checkCharsMatch([char1, char2, char3, char4, char5]) {
     if (playersGuessArray.length === 0) {
         return
@@ -138,9 +135,6 @@ function rightSpotWrongSpot() {
         }
     }
 }
-
-
-
 
 
 
@@ -220,6 +214,8 @@ function playGame() {
             guessInput.value = ''
         }
 }
+
+
 function restartGame() {
     winner = false
     lost = false
@@ -253,10 +249,13 @@ function pointsButtonsDropdown() {
         pointsResetButton.classList.add('hidden')
     }
 }
+
+
 function resetPoints() {
     points = 0
     pointsTally.innerText = points
 }
+
 
 function rulesDropdown() {
     const rulesList = document.querySelectorAll('.all-rules')
@@ -268,8 +267,30 @@ function rulesDropdown() {
         }
     })
 }
+function lightOrDarkMode(event) {
+    if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode')
+        lightOrDarkModeBtn.innerText = 'Light-mode'
+        onScreenKeyboard.forEach((key) => {
+            key.classList.remove('light-sqr')
+        })
+        guessCharactureDivs.forEach((key) => {
+            key.classList.remove('light-sqr')
+        })
+    } else {
+        body.classList.add('light-mode')
+        lightOrDarkModeBtn.innerText = 'Dark-mode'
+        guessCharactureDivs.forEach((key) => {
+            key.classList.add('light-sqr')
+        })
+        onScreenKeyboard.forEach((key) => {
+            key.classList.add('light-sqr')
+        })
+    }
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
+
 
 restartBtn.addEventListener('click', restartGame)
 
@@ -304,31 +325,7 @@ pointsDisplay.addEventListener('click', pointsButtonsDropdown)
 rulesTitle.addEventListener('click', rulesDropdown)
 
 
-
-visualMode.addEventListener('click', (event) => {
-    if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode')
-        visualMode.innerText = 'Light-mode'
-        onScreenKeyboard.forEach((key) => {
-            key.classList.remove('light-sqr')
-        })
-        guessCharactureDivs.forEach((key) => {
-            key.classList.remove('light-sqr')
-        })
-    } else {
-        body.classList.add('light-mode')
-        visualMode.innerText = 'Dark-mode'
-        guessCharactureDivs.forEach((key) => {
-            key.classList.add('light-sqr')
-        })
-        onScreenKeyboard.forEach((key) => {
-            key.classList.add('light-sqr')
-        })
-    }
-})
-
-
-
+lightOrDarkModeBtn.addEventListener('click', lightOrDarkMode)
 
 
 
