@@ -51,7 +51,7 @@ function playGame() {
 ## Getting Started
 ---
 This is currently a early working worlde game that is fitted to be used on phones or desktops and is current live on. <br>
-(website link to go here)
+https://kizzathorley.github.io/GA-Project-1/
 
 
 
@@ -144,3 +144,5 @@ the current solution is to use bold italic and underline but can be changed to n
     font-weight: bold;
 }
 ```
+
+Future iterations are to combine more word-based games and a landing page to allow one to play multiple word guessing games with the first to be hangman. 
